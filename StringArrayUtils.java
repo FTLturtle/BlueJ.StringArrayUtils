@@ -174,29 +174,17 @@ public class StringArrayUtils {
      */ // TODO
     public static String[] packConsecutiveDuplicates(String[] array) {
         ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(array));
-
-        int i = 1;
-        int numOfDup = 0;
-
-        while (i < arrayList.size()) {
-            if (arrayList.get(i).equals(arrayList.get(i - 1))){
-                numOfDup++;
+        ArrayList<String> arrayList2 = new ArrayList<>();
+        arrayList2.add(arrayList.get(0));
+        
+        for (int i = 1; i < arrayList.size(); i++){
+            if (arrayList.get(i).equals(arrayList.get(i -1))){
+                arrayList2.set(arrayList2.size() - 1, arrayList2.get(arrayList2.size() - 1) + arrayList.get(i));
+            } else {
+                arrayList2.add(arrayList.get(i));
             }
-
-            if (i + 1 == arrayList.size() || ! arrayList.get(i).equals(arrayList.get(i + 1))){
-
-                while (numOfDup > 0) {
-                    arrayList.set(i - numOfDup, arrayList.get(i - numOfDup) + arrayList.get(i));
-                    arrayList.remove(i);
-                    i--;
-                    numOfDup--;
-                }
-
-            }
-
-            i++;
         }
-
-        return arrayList.toArray(new String[0]);
+        
+        return arrayList2.toArray(new String[0]);
     }
 }
