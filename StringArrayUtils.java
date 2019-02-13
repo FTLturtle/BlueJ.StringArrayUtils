@@ -173,18 +173,23 @@ public class StringArrayUtils {
      * @return array of Strings with each consecutive duplicate occurrence concatenated as a single string in an array of Strings
      */ // TODO
     public static String[] packConsecutiveDuplicates(String[] array) {
-        ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(array));
-        ArrayList<String> arrayList2 = new ArrayList<>();
-        arrayList2.add(arrayList.get(0));
+        ArrayList<String> consecDupsPacked = new ArrayList<>();
+        String concatenatedElement = "";
         
-        for (int i = 1; i < arrayList.size(); i++){
-            if (arrayList.get(i).equals(arrayList.get(i -1))){
-                arrayList2.set(arrayList2.size() - 1, arrayList2.get(arrayList2.size() - 1) + arrayList.get(i));
+        // I added the following element to check if the array was empty before adding the first element
+        if (array.length != 0){
+        consecDupsPacked.add(array[0]);
+        }
+        
+        for (int i = 1; i < array.length; i++){
+            if (array[i].equals(array[i -1])){
+                concatenatedElement = consecDupsPacked.get(consecDupsPacked.size() - 1) + array[i];
+                consecDupsPacked.set(consecDupsPacked.size() - 1, concatenatedElement);
             } else {
-                arrayList2.add(arrayList.get(i));
+                consecDupsPacked.add(array[i]);
             }
         }
         
-        return arrayList2.toArray(new String[0]);
+        return consecDupsPacked.toArray(new String[0]);
     }
 }
