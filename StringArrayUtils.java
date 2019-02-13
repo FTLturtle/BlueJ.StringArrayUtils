@@ -176,14 +176,14 @@ public class StringArrayUtils {
         ArrayList<String> consecDupsPacked = new ArrayList<>();
         String concatenatedElement = "";
         
-        // I added the following element to check if the array was empty before adding the first element
+        // I added the following if statement to check if the array was empty before adding the first element
         if (array.length != 0){
         consecDupsPacked.add(array[0]);
         }
         
         for (int i = 1; i < array.length; i++){
             if (array[i].equals(array[i -1])){
-                concatenatedElement = consecDupsPacked.get(consecDupsPacked.size() - 1) + array[i];
+                concatenatedElement = array[i] + consecDupsPacked.get(consecDupsPacked.size() - 1);
                 consecDupsPacked.set(consecDupsPacked.size() - 1, concatenatedElement);
             } else {
                 consecDupsPacked.add(array[i]);
